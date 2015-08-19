@@ -1,0 +1,4 @@
+skybill:
+  url: http://
+  schema: conf/bill_schema.json
+
