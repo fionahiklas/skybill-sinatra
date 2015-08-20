@@ -1,0 +1,32 @@
+<div id="skyBill">
+
+    {{#statement}}
+    <div id="statement">
+        {{#period}}
+        <span class="label">From: </span><span class="date">{{from}}</span>
+        <span class="label">To: </span><span class="date">{{to}}</span>
+        {{/period}}
+    </div>
+    {{/statement}}
+
+    <div id="main_total" class="grandTotal">
+        <span class="label">Total for this period: </span><span class="amount">{{total}}</span>
+    </div>
+
+    {{#package}}
+    <div id="package"/>
+    {{/package}}
+
+    {{#callCharges}}
+    <div id="callCharges"/>
+    {{/callCharges}}
+
+    {{#skyStore}}
+    <div id="skyStore"/>
+    {{/skyStore}}
+
+</div>
+
+
+
+

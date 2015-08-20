@@ -3,27 +3,89 @@
   "type" : "object",
   "properties" : {
 
-    "claimant" : {
+    "statement" : {
       "type" : "object",
       "required" : true,
       "properties" : {
-        "name" : {
-          "type" : "string"
+        "generated" : {
+          "type" : "string",
+          "required" : "true"
+        },
+        "due" : {
+          "type" : "string",
+          "required" : "true"
+        },
+        "period" : {
+          "type" : "object",
+          "required" : "true",
+          "properties" : {
+            "from" : {
+              "type" : "string",
+              "required" : "true"
+            },
+            "to" : {
+              "type" : "string",
+              "required" : "true"
+            }
+          }
         }
       }
     },
 
-    "partner" : {
+    "total" : {
+      "type" : "number",
+      "required" : "true"
+    },
+
+    "package" : {
       "type" : "object",
       "required" : false,
       "properties" : {
-        "name" : {
-          "type" : "string"
+        "subscriptions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "type" : "string",
+                "required" : "true"
+              },
+
+              "name" : {
+                "type" : "string",
+                "required" : "true"
+              },
+
+              "cost" : {
+                "type" : "number",
+                "required" : "true"
+              }
+            }
+          }
+        },
+
+        "total" : {
+          "type" : "number",
+          "required" : "true"
         }
+      },
+
+      "callCharges" : {
+
       }
 
+      
     }
 
   }
 
+
+
+
+
+
+
+
 }
+
+
