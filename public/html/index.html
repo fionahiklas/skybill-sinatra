@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <script src="/javascript/jquery-1.11.1.js"></script>
+        <script src="/javascript/jquery-ui-1.11.0/jquery-ui.js"></script>
+        <script src="/javascript/handlebars-v1.3.0.js"></script>
+
+        <link rel="stylesheet" href="/css/jquery-ui-1.11.0/jquery-ui.css"/>
+        <link rel="stylesheet" href="/css/jquery-ui-1.11.0/jquery-ui.structure.css"/>
+        <link rel="stylesheet" href="/css/jquery-ui-1.11.0/jquery-ui.theme.css"/>
+        <title>Skybill</title>
+    </head>
+
+    <body>
+        <script id="topLevelTemplate" src="/javascript/top-level-template" type="text/x-handlebars-template"/>
+
+
+        <script>
+            $(document).ready(function () {
+                var topLevelTemplateSource = $('#topLevelTemplate').html();
+                window.topLevelTemplate = Handlebars.compile(topLevelTemplateSource);
+            });
+        </script>
+    </body>
+</html>
+
