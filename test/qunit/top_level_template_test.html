@@ -1,0 +1,41 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Skybill</title>
+
+    <link rel="stylesheet" href="qunit-1.18.0.css"/>
+    <script src="qunit-1.18.0.js"></script>
+
+    <link rel="stylesheet" href="../../public/css/jquery-ui-1.11.0/jquery-ui.css"/>
+    <link rel="stylesheet" href="../../public/css/jquery-ui-1.11.0/jquery-ui.structure.css"/>
+    <link rel="stylesheet" href="../../public/css/jquery-ui-1.11.0/jquery-ui.theme.css"/>
+
+    <script src="../../public/javascript/jquery-1.11.1.js"></script>
+    <script src="../../public/javascript/jquery-ui-1.11.0/jquery-ui.js"></script>
+    <script src="../../public/javascript/handlebars-v1.3.0.js"></script>
+
+    <!-- Note that this MUST go before the QUnit code otherwise it doesn't seem to get picked up -->
+    <script src="../../public/javascript/skybill.js"></script>
+
+
+    <script>
+        QUnit.test("Check we have a top-level template loaded", function(assert) {
+            var template = $('#topLevelTemplateHtml');
+            var templateHtml = template.html();
+            assert.ok(templateHtml, "Template has been loaded");
+            assert.ok(window.topLevelTemplate, "The template hasn't been parsed by the startup script");
+        });
+    </script>
+</head>
+
+<body>
+<h1>Top Level Template Test</h1>
+
+<div id="qunit"></div>
+
+<script id="topLevelTemplateHtml" src="../../public/javascript/top-level-template.html" type="text/x-handlebars-template"/>
+
+
+</body>
+</html>
