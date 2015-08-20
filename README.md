@@ -47,6 +47,10 @@ When running under heroku the value "production" is set.
 
 ### Check out the code
 
+```
+git clone https://github.com/fionahiklas/skybill-sinatra.git
+```
+
 
 ### Install Gems
 
@@ -61,3 +65,32 @@ cd <base of cloned code>
 bundle install --path ~/.gem
 ```
 
+### Start using rack
+
+Run the following command to start the server
+
+```
+rackup
+```
+
+You can then access the index page at the following URL
+
+```
+http://localhost:9292/html/index.html
+```
+
+
+## Tests
+
+### Ruby
+
+The ruby tests make use of rack-test and test/unit, they can be executed with the following command
+
+```
+rake test
+```
+
+
+### QUnit
+
+The [Qunit](http://qunitjs.com/) tests for the front-end can be executed by loading each html page under the test/qunit directory into a web browser of your choice (I used firefox).
