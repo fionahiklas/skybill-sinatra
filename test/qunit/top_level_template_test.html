@@ -18,13 +18,41 @@
     <!-- Note that this MUST go before the QUnit code otherwise it doesn't seem to get picked up -->
     <script src="../../public/javascript/skybill.js"></script>
 
-
     <script>
         QUnit.test("Check we have a top-level template loaded", function(assert) {
             var template = $('#topLevelTemplateHtml');
             var templateHtml = template.html();
             assert.ok(templateHtml, "Template has been loaded");
+            assert.ok(templateHtml.length>0, "The template html is non-zero size");
+            console.log("Template: " + templateHtml + "\nTemplate size: " + templateHtml.length);
             assert.ok(window.topLevelTemplate, "The template hasn't been parsed by the startup script");
+            console.log()
+        });
+
+        QUnit.test("Render top-level template with Statement node", function(assert) {
+            var statementObject = {
+              statement: {
+                  generated: "2015-01-12",
+                  due: "2015-01-25",
+                  period: {
+                      from: "2015-01-26",
+                      to: "2015-02-25"
+                  }
+              }
+            };
+
+            renderTemplate(window.topLevelTemplate, statementObject, "templateTarget");
+
+            var skyBillHtml = $('#skyBill').html;
+            var statementHtml = $('#statement').html;
+
+            assert.ok(skyBillHtml, "Check that there is a top level skyBill div");
+            assert.ok(statementHtml, "Check that there is a statement div");
+
+            var targetContent = $('#templateTarget').html();
+            console.log("Content: "+targetContent);
+            var dateContents = $('#statement div span.date');
+            //console.log("Date contents: " + dateContents.html);
         });
     </script>
 </head>
@@ -34,7 +62,8 @@
 
 <div id="qunit"></div>
 
-<script id="topLevelTemplateHtml" src="../../public/javascript/top-level-template.html" type="text/x-handlebars-template"/>
+<!-- Used to output templates -->
+<div id="templateTarget"/>
 
 
 </body>
