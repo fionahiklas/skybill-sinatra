@@ -19,15 +19,49 @@
     <script src="../../public/javascript/skybill.js"></script>
 
     <script>
-        QUnit.test("Check we have a top-level template loaded", function(assert) {
-            var template = $('#topLevelTemplateHtml');
-            var templateHtml = template.html();
-            assert.ok(templateHtml, "Template has been loaded");
-            assert.ok(templateHtml.length>0, "The template html is non-zero size");
-            console.log("Template: " + templateHtml + "\nTemplate size: " + templateHtml.length);
-            assert.ok(window.topLevelTemplate, "The template hasn't been parsed by the startup script");
-            console.log()
+
+        QUnit.test("Check that template name is calculated correctly", function(assert){
+            var templateName = templateScriptName('testTopLevel');
+
+            assert.equal(templateName, 'template_testTopLevel', "The template name is calculated correctly");
         });
+
+        QUnit.test("Check that template name is calculated correctly", function(assert){
+            var templateName = templateScriptSearchID('testTopLevel');
+
+            assert.equal(templateName, '#template_testTopLevel', "The template ID is calculated correctly");
+        });
+
+        QUnit.test("Check that require-template loads template", function(assert) {
+            var templateBefore = $(templateScriptSearchID('topLevel'));
+            assert.equal(templateBefore.length, 0, "No template should be loaded yet");
+
+            // Load the template in
+            require_template('topLevel', '.');
+
+            var templateAfter = $(templateScriptSearchID('topLevel'));
+            assert.ok(templateAfter, "Template should be loaded");
+            console.log("Template: " + templateAfter + "\nTemplate size: " + templateAfter.length);
+
+
+            var templateText = templateAfter.html();
+            console.log('Got template text: ' + templateText);
+            assert.ok(templateText.length > 0, "The template is non-zero length");
+
+        });
+
+
+        QUnit.test("Check that compile template works", function(assert) {
+            var compileOutput = undefined;
+
+            assert.ok(compileOutput == undefined, "Before compile, the output variable is undefined");
+
+            compileOutput = compileTemplate("topLevel");
+            window.topLevelTemplate = compileOutput;
+
+            assert.ok(compileOutput, "Is the compile output defined");
+        });
+
 
         QUnit.test("Render top-level template with Statement node", function(assert) {
             var statementObject = {
@@ -41,7 +75,7 @@
               }
             };
 
-            renderTemplate(window.topLevelTemplate, statementObject, "templateTarget");
+            renderTemplate(window.topLevelTemplate, statementObject, 'templateTestTarget');
 
             var skyBillHtml = $('#skyBill').html;
             var statementHtml = $('#statement').html;
@@ -63,7 +97,7 @@
 <div id="qunit"></div>
 
 <!-- Used to output templates -->
-<div id="templateTarget"/>
+<div id="templateTestTarget"/>
 
 
 </body>
