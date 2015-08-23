@@ -40,6 +40,7 @@ module Skybill
     def getbill
       url_to_call = @config.url
       rest_client_response = rest_client.get(url_to_call)
+      @@log.debug('Got code: %s, headers: %s', rest_client_response.code, rest_client_response.headers)
       Rack::Response.new([ rest_client_response.body ], rest_client_response.code, rest_client_response.headers)
     end
 
