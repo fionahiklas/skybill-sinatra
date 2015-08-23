@@ -54,3 +54,9 @@ module Skybill
   end
 
 end
+
+
+class MockRestClientResponse
+  attr_accessor :code, :headers, :body
+
+end

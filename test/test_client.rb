@@ -16,7 +16,7 @@ class ClientTest < Test::Unit::TestCase
   @@log = lumber('ClientTest')
 
   TEST_SIMPLE_URL = 'http://terry.practchett.discworld.am'
-  TEST_SIMPLE_RESPONSE = '{ "skybill" : { "name" : "Moist Von Lipwig" } }'
+  TEST_SIMPLE_RESPONSE_BODY = '{ "skybill" : { "name" : "Moist Von Lipwig" } }'
 
 
   def before_setup
@@ -33,13 +33,16 @@ class ClientTest < Test::Unit::TestCase
     @@log.debug('Testing simple response')
 
     @config.url = TEST_SIMPLE_URL
-    MockRestClient::next_response = TEST_SIMPLE_RESPONSE
+    setup_simple_json_response
 
     response = @client.getbill
 
     last_url = MockRestClient::last_url
     assert_equal(TEST_SIMPLE_URL, last_url, 'Last url should be the test value we set')
-    assert_equal(TEST_SIMPLE_RESPONSE, response, 'Last response should have been the value we set' )
+
+    assert_equal(Rack::Response, response.class, 'Check that this is the right class')
+    assert_equal(200, response.status, 'Should have a status of 200')
+    assert_equal(TEST_SIMPLE_RESPONSE_BODY, response.body[0], 'Last response should have been the value we set' )
   end
 
   private
@@ -51,6 +54,13 @@ class ClientTest < Test::Unit::TestCase
     Skybill::Client.new(@config)
   end
 
+  def setup_simple_json_response
+    response = MockRestClientResponse.new
+    response.code = 200
+    response.headers = { 'ContentType' => 'application/json' }
+    response.body = TEST_SIMPLE_RESPONSE_BODY
+    MockRestClient::next_response = response
+  end
 
 end
 

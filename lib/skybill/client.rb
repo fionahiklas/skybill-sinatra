@@ -1,5 +1,7 @@
-require 'util/lumber'
+require 'rack'
+require 'rack/response'
 require 'rest-client'
+require 'util/lumber'
 
 
 module Skybill
@@ -37,7 +39,8 @@ module Skybill
     #
     def getbill
       url_to_call = @config.url
-      rest_client.get(url_to_call)
+      rest_client_response = rest_client.get(url_to_call)
+      Rack::Response.new([ rest_client_response.body ], rest_client_response.code, rest_client_response.headers)
     end
 
     private

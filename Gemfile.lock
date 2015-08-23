@@ -43,7 +43,7 @@ PLATFORMS
 
 DEPENDENCIES
   json-schema
-  rack (>= 1.5.2)
+  rack (>= 1.6.4)
   rack-test
   rake
   rest-client (= 2.0.0.rc1)
