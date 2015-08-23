@@ -8,7 +8,7 @@ require 'skybill/responseGenerator'
 
 ##
 #
-
+# All Skybill code should be under this namespace to keep things clean and tidy
 #
 module Skybill
 
@@ -30,6 +30,22 @@ module Skybill
 			@@log.debug('Server Instance created')
 		end
 
+		def self.create_config
+			Skybill::Config.new
+		end
+
+		def self.create_client
+			Skybill::Client.new(Server::config)
+		end
+
+		def self.config
+			@@config ||= Server::create_config
+		end
+
+		def self.client
+			@@client ||= Server::create_client
+		end
+
 		##
 		#
 		# Configure the Sinatra Application
@@ -38,10 +54,12 @@ module Skybill
 		# that we can only call class methods that have already been defined before this
 		# point.
 		#
+		# Any configuration or resources for the application need to be class members as
+		# Rack creates instances to handle requests.  There isn't a way to create an
+		# instance to handle things, this is left up to Rack and the web server
+		# implementation.  We're not in Java land anymore Toto ;-)
+		#
 		configure do
-
-			@@config = Config.new
-
 
 			if settings.development?
 				@@log.debug('** Development **')
@@ -70,6 +88,16 @@ module Skybill
 		end
 
 
+		get '/getbill' do
+			@@log.debug('Getbill')
+			response = Server::client.getbill
+
+			# Check schema here using json-schema
+
+			@@log.debug('Got response, status code: ', response.status)
+			[ response.status, response.headers, response.body]
+		end
+
 		not_found do
 			@@log.debug('Not found')
 			generate_error_response(404, "Resource '#{request.fullpath}' not found")
@@ -80,33 +108,6 @@ module Skybill
 			@@log.error('Application error')
 			generate_error_response(500, 'Application error')
 		end
-
-
-		private
-
-			def read_request_body(body_stringio)
-				@@jsonHandler.read_request_body(body_stringio)
-			end
-
-
-			def validate_json(json_text)
-				@@jsonHandler.validate_json(json_text)
-			end
-
-
-			def generate_form(json_hash)
-				@@emailHandler.generate_form(json_hash)
-			end
-
-
-			def create_email(parsed_data)
-				@@emailHandler.create_email(parsed_data)
-			end
-
-
-			def send_email(email_data)
-				@@emailHandler.send_email(email_data)
-			end
 
 	end
 
