@@ -3,6 +3,7 @@ require 'sinatra/base'
 require 'util/lumber'
 
 require 'skybill/config'
+require 'skybill/client'
 require 'skybill/responseGenerator'
 
 

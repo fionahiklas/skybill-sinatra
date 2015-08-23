@@ -8,7 +8,7 @@ module Skybill
 
   module Constants
     CONFIG_SKYBILL = 'skybill'
-    CONFIG_REST_URL = 'rest_url'
+    CONFIG_REST_URL = 'url'
     CONFIG_SCHEMA = 'schema'
   end
 
