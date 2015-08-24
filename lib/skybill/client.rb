@@ -26,6 +26,16 @@ module Skybill
 
     ##
     #
+    # Some of the header symbols that RestClient returns need mapping to
+    # string header names.  This is a look-up table for important mappings
+    #
+    SYMBOL_STRING_HEADER_MAPPING = {
+        :content_type => 'Content-Type'
+    }
+
+
+    ##
+    #
     # Config object is needed to get the URL to call
     #
     def initialize(config)
@@ -41,7 +51,10 @@ module Skybill
       url_to_call = @config.url
       rest_client_response = rest_client.get(url_to_call)
       @@log.debug('Got code: %s, headers: %s', rest_client_response.code, rest_client_response.headers)
-      Rack::Response.new([ rest_client_response.body ], rest_client_response.code, rest_client_response.headers)
+
+      Rack::Response.new([ rest_client_response.body ],
+                         rest_client_response.code,
+                         convert_headers(rest_client_response.headers))
     end
 
     private
@@ -56,6 +69,25 @@ module Skybill
       RestClient
     end
 
+
+    ##
+    #
+    # The RestClient returns headers as symbols rather than text,
+    # convert these into string keys
+    #
+    def convert_headers(rest_client_headers)
+      rack_headers = {}
+      rest_client_headers.each do |key, value|
+        rack_header_key = check_mapping(key)
+        rack_headers[rack_header_key] = value
+      end
+
+      rack_headers
+    end
+
+    def check_mapping(key_to_check)
+      SYMBOL_STRING_HEADER_MAPPING[key_to_check] || key_to_check
+    end
   end
 
 end

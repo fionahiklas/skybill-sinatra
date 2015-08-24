@@ -45,6 +45,25 @@ class ClientTest < Test::Unit::TestCase
     assert_equal(TEST_SIMPLE_RESPONSE_BODY, response.body[0], 'Last response should have been the value we set' )
   end
 
+
+  def test_simple_response_convert_content_type
+    @@log.debug('Testing simple response')
+
+    @config.url = TEST_SIMPLE_URL
+    setup_simple_json_response
+
+    response = @client.getbill
+
+    last_url = MockRestClient::last_url
+    assert_equal(TEST_SIMPLE_URL, last_url, 'Last url should be the test value we set')
+
+    assert_equal(200, response.status, 'Should have a status of 200')
+
+    contentType = response['Content-Type']
+    assert_not_nil(contentType, 'The Content-Type header should exist')
+    assert_equal('application/json', contentType, 'Content type should be JSON' )
+  end
+
   private
 
   def create_client
@@ -57,7 +76,7 @@ class ClientTest < Test::Unit::TestCase
   def setup_simple_json_response
     response = MockRestClientResponse.new
     response.code = 200
-    response.headers = { 'ContentType' => 'application/json' }
+    response.headers = { :content_type => 'application/json' }
     response.body = TEST_SIMPLE_RESPONSE_BODY
     MockRestClient::next_response = response
   end
