@@ -86,7 +86,7 @@ module Skybill
     end
 
     def check_mapping(key_to_check)
-      SYMBOL_STRING_HEADER_MAPPING[key_to_check] || key_to_check
+      SYMBOL_STRING_HEADER_MAPPING[key_to_check] || key_to_check.to_s
     end
   end
 

@@ -95,7 +95,7 @@ module Skybill
 
 			# Check schema here using json-schema
 
-			@@log.debug('Got response, status code: %s', response.status)
+			@@log.debug('Got response, status code: %s, headers: %s', response.status, response.headers)
 			[ response.status, response.headers, response.body]
 		end
 
