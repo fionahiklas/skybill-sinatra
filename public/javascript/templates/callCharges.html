@@ -1,0 +1,18 @@
+
+<div class="calls">
+
+    <div class="call-header">
+        <span class="called">Called</span>
+        <span class="duration">Duration</span>
+        <span class="cost">Cost</span>
+    </div>
+    {{#calls}}
+        <div class="called">{{called}}</div>
+        <div class="duration">{{duration}}</div>
+        <div class="cost">{{cost}}</div>
+    {{/calls}}
+    <div class="total">
+        <span class="label">Total</span>
+        <span class="total">{{total}}</span>
+    </div>
+</div>

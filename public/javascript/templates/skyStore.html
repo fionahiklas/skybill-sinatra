@@ -1,0 +1,26 @@
+
+<div class="store">
+
+    <div class="rentals-header">
+        <span class="title">Title</span>
+        <span class="cost">Cost</span>
+    </div>
+    {{#rentals}}
+    <div class="title">{{title}}</div>
+    <div class="cost">{{cost}}</div>
+    {{/rentals}}
+
+    <div class="buyandkeep-header">
+        <span class="title">Title</span>
+        <span class="cost">Cost</span>
+    </div>
+    {{#buyAndKeep}}
+    <div class="title">{{title}}</div>
+    <div class="cost">{{cost}}</div>
+    {{/buyAndKeep}}
+
+    <div class="total">
+        <span class="label">Total</span>
+        <span class="total">{{total}}</span>
+    </div>
+</div>
