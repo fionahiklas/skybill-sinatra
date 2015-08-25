@@ -109,7 +109,7 @@ function renderAllTemplates(jsonData) {
     renderTemplate(window.topLevelCompiledTemplate, jsonData, 'billArea');
     renderTemplate(window.packagesCompiledTemplate, jsonData.package, 'package');
     renderTemplate(window.skyStoreCompiledTemplate, jsonData.skyStore, 'skyStore');
-    renderAllTemplates(window.callChargesCompiledTemplate, jsonData.callCharges, 'callCharges');
+    renderTemplate(window.callChargesCompiledTemplate, jsonData.callCharges, 'callCharges');
     console.log('Should all have been rendered!');
 }
 
