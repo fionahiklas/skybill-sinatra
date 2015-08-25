@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Skybill - ready test</title>
+
+    <link rel="stylesheet" href="qunit-1.18.0.css"/>
+    <script src="qunit-1.18.0.js"></script>
+
+
+    <script src="../javascript/jquery-1.11.1.js"></script>
+    <script src="../javascript/handlebars-v1.3.0.js"></script>
+
+    <!-- Note that this MUST go before the QUnit code otherwise it doesn't seem to get picked up -->
+    <script src="../javascript/skybill.js"></script>
+    <script>
+
+        /**
+         * Override the templatePath method in skybill.js code so that we can test
+         * @returns {string}
+         */
+        templatePath = function() {
+            console.log('*** Testing templatePath implementation ***');
+            var current = window.location.toString();
+            var base = current.substr(0, current.lastIndexOf('/'));
+            console.log('***  Base: ' + base);
+
+            var result = base.substr(0, base.lastIndexOf('/qunit')) + '/javascript/templates';
+            console.log('*** Template Path: ' + result);
+            return result;
+        };
+
+        var billLoaded = false;
+
+        /**
+         * Override the getbillJson function as we don't want anything to be loaded
+         */
+        getbillJson = function() {
+            console.log('*** Testing getbillJson ***');
+            billLoaded = true;
+        };
+    </script>
+
+    <!-- This must be loaded after the above so that it uses the overridden functions -->
+    <script src="../javascript/skybill-ready.js"></script>
+
+    <script>
+        console.log('Base URL: ' + window.location);
+        QUnit.test("Check that the document ready function loads everything", function(assert){
+
+            assert.equal(billLoaded, true, 'We should have called the getbillJson function');
+        });
+
+        QUnit.test("Check that all the templates loaded", function(assert){
+            assert.ok(window.topLevelCompiledTemplate, 'Did the topLevel template load');
+            assert.ok(window.packagesCompiledTemplate, 'Did the packages template load' );
+            assert.ok(window.skyStoreCompiledTemplate, 'Did the skyStore template load');
+            assert.ok(window.callChargesCompiledTemplate, 'Did the callCharges template load');
+        });
+
+
+    </script>
+</head>
+
+<body>
+<h1>Sky bill Ready Test</h1>
+
+<div id="qunit"></div>
+
+<!-- This must be here otherwise the document ready function won't trigger -->
+<div id="skyBill"/>
+
+</body>
+</html>
