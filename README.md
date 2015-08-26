@@ -19,8 +19,15 @@ There are several pros and cons with this appraoch:
 ### Cons
 
 * The proxy is I/O bound and each connection waits until the REST call to the bill server is complete
+* Sinatra doesn't provide an easy way to handle multiple connections, we rely on the Ruby Webserver for this
+* Really this is alot of code for a reverse proxy - we should just use nginx :D
+
 
 ## Configuration
+
+
+### Yaml Configuration
+
 
 
 
@@ -41,6 +48,8 @@ This is a standard variable used to communicate the environment in which a RACK 
 For normal development work locally the value of this variable is obviously "development".  When running tests however it has been set to "test" in the Rakefile to force that configuration.
 
 When running under heroku the value "production" is set.
+
+
 
 
 ## Running
@@ -90,7 +99,40 @@ The ruby tests make use of rack-test and test/unit, they can be executed with th
 rake test
 ```
 
+You can also test the server (sinatra front-end) and client (makes calls to Skybill REST endpoint) code separately using the following commands
+
+
 
 ### QUnit
 
 The [Qunit](http://qunitjs.com/) tests for the front-end can be executed by loading each html page under the test/qunit directory into a web browser of your choice (I used firefox).
+
+In order to do this, however, you must be running the Ruby server so that it can serve the HTML files.  It isn't possible for QUnit/JavaScript to load the template files without 
+there being a real server, I tried doing this from file:/// URLs but it doesn't work properly.
+
+Start the server:
+
+```
+rackup
+```
+
+Use for following URLs for the QUnit tests
+
+* http://localhost:9292/qunit/skybill_ready_test.html
+* http://localhost:9292/qunit/top_level_template_test.html
+
+
+
+## Further Development
+
+### Using NGinx
+ 
+This is MUCH faster in terms of proxying the skybill REST endpoint.  This would mean we could throw away the Ruby code.
+
+### UI
+
+This could be MUCH neater and also using JQuery UI to collapse certain sections.  The loading process needs some animation while the JSON is retrieved.
+
+### Tests
+
+The QUnit tests need to cover much more of the functionality.  

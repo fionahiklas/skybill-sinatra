@@ -1,22 +1,26 @@
 
 <div class="store">
 
-    <div class="rentals-header">
-        <span class="title">Title</span>
-        <span class="cost">Cost</span>
+    <div class="row header">
+        <div class="col left">Title</div>
+        <div class="col middle">Cost</div>
     </div>
     {{#rentals}}
-    <div class="title">{{title}}</div>
-    <div class="cost">{{cost}}</div>
+    <div class="row">
+        <div class="col left">{{title}}</div>
+        <div class="col middle">{{cost}}</div>
+    </div>
     {{/rentals}}
 
-    <div class="buyandkeep-header">
-        <span class="title">Title</span>
-        <span class="cost">Cost</span>
+    <div class="row header">
+        <div class="col left">Title</div>
+        <div class="col middle">Cost</div>
     </div>
     {{#buyAndKeep}}
-    <div class="title">{{title}}</div>
-    <div class="cost">{{cost}}</div>
+    <div class="row">
+        <div class="col left">{{title}}</div>
+        <div class="col middle">{{cost}}</div>
+    </div>
     {{/buyAndKeep}}
 
     <div class="total">

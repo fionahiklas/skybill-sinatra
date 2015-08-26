@@ -1,14 +1,16 @@
 
 <div class="calls">
-    <div class="call-header">
-        <span class="called">Called</span>
-        <span class="duration">Duration</span>
-        <span class="cost">Cost</span>
+    <div class="row header">
+        <div class="col left">Called</div>
+        <div class="col middle">Duration</div>
+        <div class="col right">Cost</div>
     </div>
     {{#calls}}
-        <div class="called">{{called}}</div>
-        <div class="duration">{{duration}}</div>
-        <div class="cost">{{cost}}</div>
+    <div class="row">
+        <div class="col left">{{called}}</div>
+        <div class="col middle">{{duration}}</div>
+        <div class="col right">{{cost}}</div>
+    </div>
     {{/calls}}
     <div class="total">
         <span class="label">Total</span>

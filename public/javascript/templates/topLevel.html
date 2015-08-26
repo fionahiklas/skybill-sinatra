@@ -1,35 +1,45 @@
 <div id="skyBill">
 
-    {{#statement}}
-    <div id="statement">
-        {{#period}}
-        <div>
-            <span class="label">From: </span>
-            <span class="date">{{from}}</span>
-        </div>
+    <p>
+        {{#statement}}
+        <div id="statement">
+            {{#period}}
+            <div>
+                <span class="label">From: </span>
+                <span class="date">{{from}}</span>
+            </div>
 
-        <div>
-            <span class="label">To: </span>
-            <span class="date">{{to}}</span>
+            <div>
+                <span class="label">To: </span>
+                <span class="date">{{to}}</span>
+            </div>
+            {{/period}}
         </div>
-        {{/period}}
-    </div>
-    {{/statement}}
+        {{/statement}}
+    </p>
 
-    <div id="main_total" class="grandTotal">
-        <span class="label">Total for this period: </span><span class="amount">{{total}}</span>
-    </div>
+    <p>
+        <div id="main_total" class="grandTotal">
+            <span class="label">Total for this period: </span><span class="amount">{{total}}</span>
+        </div>
+    </p>
 
     {{#package}}
-    <div id="package"/>
+    <p>
+        <div id="package"/>
+    </p>
     {{/package}}
 
     {{#callCharges}}
-    <div id="callCharges"/>
+    <p>
+        <div id="callCharges"/>
+    </p>
     {{/callCharges}}
 
     {{#skyStore}}
-    <div id="skyStore"/>
+    <p>
+        <div id="skyStore"/>
+    </p>
     {{/skyStore}}
 
 </div>

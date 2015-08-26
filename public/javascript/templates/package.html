@@ -1,18 +1,22 @@
 
 <div class="package">
 
-    <div class="subscription-header">
-        <span class="type">Type</span>
-        <span class="name">Name</span>
-        <span class="cost">Cost</span>
+    <div class="row header">
+        <div class="col left type">Type</div>
+        <div class="col middle name">Name</div>
+        <div class="col right cost">Cost</div>
     </div>
     {{#subscriptions}}
-    <div class="type">{{type}}</div>
-    <div class="name">{{name}}</div>
-    <div class="cost">{{cost}}</div>
+    <div class="row">
+        <div class="col left type">{{type}}</div>
+        <div class="col middle name">{{name}}</div>
+        <div class="col right cost">{{cost}}</div>
+    </div>
     {{/subscriptions}}
     <div class="total">
         <span class="label">Total</span>
         <span class="total">{{total}}</span>
     </div>
 </div>
+
+
