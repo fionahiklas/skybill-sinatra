@@ -1,0 +1,67 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Skybill - rounding tests</title>
+
+    <link rel="stylesheet" href="qunit-1.18.0.css"/>
+    <script src="qunit-1.18.0.js"></script>
+
+
+    <script src="/javascript/jquery-1.11.1.js"></script>
+    <script src="/javascript/handlebars-v1.3.0.js"></script>
+
+    <!-- Note that this MUST go before the QUnit code otherwise it doesn't seem to get picked up -->
+    <script src="/javascript/skybill.js"></script>
+
+
+    <script>
+        QUnit.test('Check that without a helper we get no extra decimal places', function(assert){
+
+            require_template('no-fixed-decimal','/qunit');
+            var compiledTemplate = compileTemplate('no-fixed-decimal');
+            var testData = { result: 10.00 };
+
+            renderTemplate(compiledTemplate, testData, 'templateOutput-noFixed');
+
+            var result = $('#skybill-result-no-fixed').html();
+
+            console.log('*** Got no-fixed result: ' + result);
+
+            assert.ok(result, 'Should get some result');
+            assert.equal(result, '10', 'The result should be 10 without any decimal places');
+        });
+
+        QUnit.test('Check that with a helper we get two decimal places', function(assert){
+
+            require_template('fixed-decimal','/qunit');
+            var compiledTemplate = compileTemplate('fixed-decimal');
+            var testData = { result: 10.00 };
+
+            renderTemplate(compiledTemplate, testData, 'templateOutput-fixed');
+
+            var result = $('#skybill-result-fixed').html();
+
+            console.log('*** Got fixed result: '+ result);
+
+            assert.ok(result, 'Should get some result');
+            assert.equal(result, '10.00', 'The result should be 10.00 with two decimal places');
+        });
+
+
+    </script>
+</head>
+
+<body>
+<h1>Sky bill Ready Test</h1>
+
+<div id="qunit"></div>
+
+<!-- This is where the no-fixed output goes -->
+<div id="templateOutput-noFixed"></div>
+
+<!-- This is where the fixed output goes -->
+<div id="templateOutput-fixed"></div>
+
+</body>
+</html>

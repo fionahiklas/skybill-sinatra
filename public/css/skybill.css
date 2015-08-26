@@ -59,3 +59,20 @@ div.right {
 	margin-left: auto;
 }
 
+div.total {
+	float: right;
+	margin-left: auto;
+}
+
+
+div.total-row {
+	width: 100%;
+	position: relative;
+	margin: 1px;
+	display: block;
+	background-color: #FFF8F0;
+}
+
+div.table {
+
+}

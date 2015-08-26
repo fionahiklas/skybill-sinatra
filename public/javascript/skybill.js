@@ -122,3 +122,8 @@ function getbillJson() {
         renderAllTemplates(jsonData);
     });
 }
+
+
+Handlebars.registerHelper('currency', function(moneyAmount) {
+   return  moneyAmount.toFixed(2);
+});

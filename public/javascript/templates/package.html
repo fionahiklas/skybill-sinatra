@@ -1,21 +1,26 @@
 
 <div class="package">
 
-    <div class="row header">
-        <div class="col left type">Type</div>
-        <div class="col middle name">Name</div>
-        <div class="col right cost">Cost</div>
+    <div class="table">
+        <div class="row header">
+            <div class="col left type">Type</div>
+            <div class="col middle name">Name</div>
+            <div class="col right cost">Cost</div>
+        </div>
+        {{#subscriptions}}
+        <div class="row">
+            <div class="col left type">{{type}}</div>
+            <div class="col middle name">{{name}}</div>
+            <div class="col right cost">{{currency cost}}</div>
+        </div>
+        {{/subscriptions}}
     </div>
-    {{#subscriptions}}
-    <div class="row">
-        <div class="col left type">{{type}}</div>
-        <div class="col middle name">{{name}}</div>
-        <div class="col right cost">{{cost}}</div>
-    </div>
-    {{/subscriptions}}
-    <div class="total">
-        <span class="label">Total</span>
-        <span class="total">{{total}}</span>
+
+    <div class="total-row">
+        <div class="total">
+            <span class="label">Total</span>
+            <span class="total">{{currency total}}</span>
+        </div>
     </div>
 </div>
 

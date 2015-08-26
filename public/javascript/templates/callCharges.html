@@ -1,19 +1,24 @@
 
 <div class="calls">
-    <div class="row header">
-        <div class="col left">Called</div>
-        <div class="col middle">Duration</div>
-        <div class="col right">Cost</div>
+    <div>
+        <div class="row header">
+            <div class="col left">Called</div>
+            <div class="col middle">Duration</div>
+            <div class="col right">Cost</div>
+        </div>
+        {{#calls}}
+        <div class="row">
+            <div class="col left">{{called}}</div>
+            <div class="col middle">{{duration}}</div>
+            <div class="col right">{{currency cost}}</div>
+        </div>
+        {{/calls}}
     </div>
-    {{#calls}}
-    <div class="row">
-        <div class="col left">{{called}}</div>
-        <div class="col middle">{{duration}}</div>
-        <div class="col right">{{cost}}</div>
-    </div>
-    {{/calls}}
-    <div class="total">
-        <span class="label">Total</span>
-        <span class="total">{{total}}</span>
+
+    <div class="total-row">
+        <div class="total">
+            <span class="label">Total</span>
+            <span class="total">{{currency total}}</span>
+        </div>
     </div>
 </div>
