@@ -1,40 +1,52 @@
 
-<p class="store">
+<div class="charge store">
 
-    <div>
+    <div class="heading">
+        <span>Rentals</span>
+    </div>
+
+    <div class="table">
         <div class="row header">
             <div class="col left">Title</div>
-            <div class="col middle"></div>
+            <div class="col middle">&nbsp;</div>
             <div class="col right">Cost</div>
         </div>
         {{#rentals}}
         <div class="row">
             <div class="col left">{{title}}</div>
-            <div class="col middle"> </div>
-            <div class="col right">{{currency cost}}</div>
+            <div class="col middle">&nbsp;</div>
+            <div class="col right">£{{currency cost}}</div>
         </div>
         {{/rentals}}
     </div>
 
-    <div>
+    <div class="heading">
+        <span>Buy and Keep</span>
+    </div>
+
+    <div class="table">
         <div class="row header">
             <div class="col left">Title</div>
-            <div class="col middle"> </div>
+            <div class="col middle">&nbsp;</div>
             <div class="col right">Cost</div>
         </div>
         {{#buyAndKeep}}
         <div class="row">
             <div class="col left">{{title}}</div>
-            <div class="col middle"> </div>
-            <div class="col right">{{currency cost}}</div>
+            <div class="col middle">&nbsp;</div>
+            <div class="col right">£{{currency cost}}</div>
         </div>
         {{/buyAndKeep}}
     </div>
 
-    <div class="total-row">
-        <div class="total">
-            <span class="label">Total</span>
-            <span class="total">{{currency total}}</span>
+    <div class="table">
+        <div class="row">
+            <div class="col left">&nbsp;</div>
+            <div class="col middle">&nbsp;</div>
+            <div class="col right">
+                <div class="total">£{{currency total}}</div>
+            </div>
         </div>
     </div>
+
 </div>

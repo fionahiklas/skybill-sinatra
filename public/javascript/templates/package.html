@@ -1,5 +1,9 @@
 
-<div class="package">
+<div class="charge package">
+
+    <div class="heading">
+        <span>Packages</span>
+    </div>
 
     <div class="table">
         <div class="row header">
@@ -11,15 +15,18 @@
         <div class="row">
             <div class="col left type">{{type}}</div>
             <div class="col middle name">{{name}}</div>
-            <div class="col right cost">{{currency cost}}</div>
+            <div class="col right cost">£{{currency cost}}</div>
         </div>
         {{/subscriptions}}
     </div>
 
-    <div class="total-row">
-        <div class="total">
-            <span class="label">Total</span>
-            <span class="total">{{currency total}}</span>
+    <div class="table">
+        <div class="row">
+            <div class="col left">&nbsp;</div>
+            <div class="col middle">&nbsp;</div>
+            <div class="col right">
+                <div class="total">£{{currency total}}</div>
+            </div>
         </div>
     </div>
 </div>

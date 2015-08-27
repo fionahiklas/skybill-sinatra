@@ -5,9 +5,16 @@ body {
 }
 
 #billArea {
+	position: relative;
 	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+div.container {
+	position: relative;
+	display: block;
+	width: 100%;
 }
 
 div.store div.row {
@@ -22,6 +29,7 @@ div.store div.row {
 	background-color: #F0F0FF;
 }
 
+
 div.row {
 	position: relative;
 	margin: 1px;
@@ -33,6 +41,9 @@ div.header {
 	font-weight: bolder;
 	font-size: 110%;
 	background-color: #F8F0E8;
+	border-bottom: solid;
+	border-width: 2px;
+	border-color: black;
 }
 
 div.col {
@@ -59,20 +70,43 @@ div.right {
 	margin-left: auto;
 }
 
-div.total {
-	float: right;
-	margin-left: auto;
-}
-
-
-div.total-row {
-	width: 100%;
-	position: relative;
-	margin: 1px;
+div.charge {
 	display: block;
-	background-color: #FFF8F0;
+	position: relative;
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
-div.table {
+div.total {
+	display: inline-block;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-color: black;
+	border-width: 2px;
+}
 
+div.lined {
+	border-left: solid;
+	border-right: solid;
+	border-color: black;
+	border-width: 1px;
+}
+
+div.heading {
+	position: relative;
+	display: block;
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+div.heading span {
+	font-size: 120%;
+	font-weight: bolder;
+	color: black;
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
 }
