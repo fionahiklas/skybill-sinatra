@@ -19,6 +19,9 @@
     <script src="/javascript/skybill.js"></script>
 
     <script>
+        // Ordering of tests matters since we build things up
+        // Added this when I spotted problems in another project where I was trying to re-use the code here
+        QUnit.config.reorder = false;
 
         QUnit.test("Check that template name is calculated correctly", function(assert){
             var templateName = templateScriptName('testTopLevel');
